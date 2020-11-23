@@ -1,0 +1,9 @@
+image: php:7
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - composer
+        script:
+          - make ci

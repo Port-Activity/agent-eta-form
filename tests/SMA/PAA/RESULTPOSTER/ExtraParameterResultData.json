@@ -1,0 +1,27 @@
+{
+    "time": "2017-11-17T11:42:51+0000",
+    "external_id": 3894570,
+    "checkpoint": "RSS1",
+    "direction": "In",
+    "dummykey": "dummyvalue",
+    "front_license_plates": [
+      {
+        "number": "ABC123",
+        "nationality": "FIN"
+      }
+    ],
+    "rear_license_plates": [
+      {
+        "number": "ABC124",
+        "nationality": "FIN"
+      }
+    ],
+    "containers": [
+      {
+        "identification": "ABCD1234567"
+      },
+      {
+        "identification": "ABCD1234568"
+      }
+    ]
+}

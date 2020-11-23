@@ -1,0 +1,6 @@
+vendor
+coverage
+version_build_id
+version_hash
+
+.env

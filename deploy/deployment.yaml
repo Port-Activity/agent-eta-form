@@ -1,0 +1,84 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: agent-eta-form
+spec:
+  selector:
+    app: agent-eta-form
+  type: NodePort
+  ports:
+    - protocol: TCP
+      name: visy-agent
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-eta-form
+  labels:
+    app: agent-eta-form
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-eta-form
+  template:
+    metadata:
+      labels:
+        app: agent-eta-form
+    spec:
+      imagePullSecrets:
+      - name: pipeline-docker-registry
+      containers:
+      - name: agent-eta-form
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}-${CICD_GIT_COMMIT}
+        env:
+          - name: API_URL
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: API_URL
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: API_KEY
+          - name: AINO_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: AINO_API_KEY
+          - name: API_PUBLIC_KEY_JSON
+            valueFrom:
+              secretKeyRef:
+                name: api
+                key: PUBLIC_KEY_JSON
+          - name: ETA_FORM_CODE
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: ETA_FORM_CODE
+          - name: MAIN_FORM_URL
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: MAIN_FORM_URL
+          - name: RTA_FORM_URL
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: RTA_FORM_URL
+          - name: TARGET_PORT_NAME
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: TARGET_PORT_NAME
+          - name: ETA_FORM_TIMEZONE
+            valueFrom:
+              secretKeyRef:
+                name: agent-eta-form
+                key: ETA_FORM_TIMEZONE
+
+        ports:
+        - containerPort: 80

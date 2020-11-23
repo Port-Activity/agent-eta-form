@@ -1,0 +1,17 @@
+{
+    "name": "spia/agent-eta-form",
+    "authors": [
+        {
+            "name": "Kaarle Hovila",
+            "email": "kaarle.hovila@unikie.com"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpunit/phpunit": "^7"
+    },
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "sendgrid/sendgrid": "^7.4"
+    }
+}
